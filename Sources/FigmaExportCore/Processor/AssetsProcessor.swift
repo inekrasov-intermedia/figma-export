@@ -312,12 +312,7 @@ public extension AssetsProcessable {
             if isLightAssetSet == true, !isNameValid(asset.name) {
                 errors.all.append(AssetsValidatorError.badName(name: asset.name))
             }
-            switch assetSet.insert(asset) {
-            case (true, _):
-                break // ok
-            case (false, let oldMember): // already exists
-                errors.all.append(AssetsValidatorError.foundDuplicate(assetName: oldMember.name))
-            }
+            assetSet.insert(asset)
         }
         return assetSet
     }
